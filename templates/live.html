@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>公开课直播 - 友友桥</title>
+		<meta name="Keywords" content="友友桥、咨询服务、分享智慧、创造价值">
+		<meta name="Description" content="友友桥、咨询服务、分享智慧、创造价值">
+		<link href="/static/images/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="/static/css/square_new.css" rel="stylesheet" type="text/css">
+		<link type="text/css" href="/static/css/wokaobox.css" rel="stylesheet" charset="utf-8" media="screen">
+	</head>
+	
+	<body id="square">
+	<input type="hidden" id="userid" value="{{ userid|escape }}">
+	<input type="hidden" id="username" value="{{ username|escape }}">
+	<input type="hidden" id="token" value="{{ token|escape }}">
+	
+	<div id="header">
+	<div class="header_wrap">
+		<div class="logo fl" style="padding-top: 5px;">
+			<a href="http://www.uubridge.net/">
+				<img src="/static/images/logo.png" width="203" height="25" title="" alt="友友桥">
+			</a>
+		</div>
+		
+		<ul class="top_nav fl">
+			<li class="fl"><a href="http://www.uubridge.net/" class="to_dashboard">首页</a></li>
+			<li class="fl"><a href="#" class="to_square">公开课直播</a></li>
+			<li class="fl"><a href="http://www.uubridge.net/cn/zh_cn/vl/3/3/1.html" target="_blank" class="to_series">系列课程</a></li>
+		</ul>
+	</div>  
+	</div>
+	
+	<div class="main_content">
+		<div class="area_content_wrap cf">
+			<div class="area_content  fl">
+				<div class="course_area " id="growth" style="top: 0px; z-index:20">
+						<div class="area_head cf">
+							<h2 class="fl">
+								<strong>
+									<a class="area areaId_2" href="#" title="考研直播间 ">考研</a>
+								</strong>
+							</h2>
+							<span class="fl">
+							<a class="point" href="#" title="考研 " rel="nofollow"></a><!-- （<a class="more" href="#" rel="nofollow">更多</a>） -->
+							</span>
+						</div>
+							
+						<ul class="cf">
+							{% for liveItem in live_level1 %}
+							<li class="fl">
+								<a class="course_img_wrap" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank" title="{{liveItem.courseName|escape}}">
+									<img src="/static/upload/live/{{liveItem.coverPath}}" width="180" height="120" alt="{{liveItem.courseName|escape}}">
+								</a>
+								<div class="course_info cf">
+									<h3 class="course_title_wrap">
+										<a class="course_title" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank">{{liveItem.courseName|escape}}</a>
+									</h3>
+									<a class="avatar pop_profile fl" href="#" target="_blank" title="{{liveItem.profile.nick}}">
+										<img src="http:{{liveItem.profile.avatar}}" width="20" height="20" alt="{{liveItem.profile.nick}}">
+									</a>
+									<a class="nickname fl" target="_blank">{{liveItem.profile.nick}}</a>
+									{% if liveItem.islove %}
+									<p class="already_liked fr">{{liveItem.lovenum}}</p>
+									{% else %}
+									<p class="already_liked fr" style="display:none;">{{liveItem.lovenum|add:1}}</p>
+									<a class="love_icon fr" room-id="{{liveItem.roomId}}" title="{{liveItem.lovenum}}人报名">{{liveItem.lovenum}}</a>
+									{% endif %}
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+				</div>
+				<!--  
+				<div class="course_area " id="tech" style="top: 20px; z-index:18">
+						<div class="area_head cf">
+							<h2 class="fl">
+								<strong>
+									<a class="area areaId_5" href="#" title="互联网 · 科技 · 创业公开课">互联网|科技|创业</a>
+								</strong>
+							</h2>
+							<span class="fl"><a class="point" href="#" title="互联网 · 科技 · 创业" rel="nofollow"></a></span>
+						</div>
+							
+						<ul class="cf">
+							{% for liveItem in live_level2 %}
+							<li class="fl">
+								<a class="course_img_wrap" href="http://{{domain}}/joinlive/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank" title="{{liveItem.courseName|escape}}">
+									<img src="{{liveItem.coverPath}}" width="180" height="120" alt="{{liveItem.courseName|escape}}">
+								</a>
+								<div class="course_info cf">
+									<h3 class="course_title_wrap">
+										<a class="course_title" href="#" target="_blank" title="{{liveItem.courseName|escape}}">{{liveItem.courseName|escape}}</a>
+									</h3>
+									<a class="avatar pop_profile fl" href="#" target="_blank" title="{{liveItem.adminUser.nick}}">
+										<img src="/static/images/83f329f2339748daab227a855311b59a.jpg" width="20" height="20" alt="{{liveItem.adminUser.nick}}">
+									</a>
+									<a class="nickname fl" href="#" target="_blank" title="{{liveItem.adminUser.nick}}">{{liveItem.adminUser.nick}}</a>
+									<p class="already_liked fr" style="display:none;">9</p>
+									<a class="love_icon fr" href="#" title="{{liveItem.reserve|length}}人报名">{{liveItem.reserve|length}}</a>
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+				</div>
+				
+				<div class="course_area " id="language" style="top: 40px; z-index:17">
+						
+						<div class="area_head cf">
+							<h2 class="fl">
+								<strong>
+									<a class="area areaId_6" href="#" title="英语 · 其他语言公开课">英语|其他语言</a>
+								</strong>
+							</h2>
+							<span class="fl"><a class="point" href="#" title="英语 · 其他语言" rel="nofollow"></a></span>
+						</div>
+							
+						<ul class="cf">
+							{% for liveItem in live_level3 %}
+							<li class="fl">
+								<a class="course_img_wrap" href="http://{{domain}}/joinlive/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank" title="{{liveItem.courseName|escape}}">
+									<img src="{{liveItem.coverPath}}" width="180" height="120" alt="{{liveItem.courseName|escape}}">
+								</a>
+								<div class="course_info cf">
+									<h3 class="course_title_wrap">
+										<a class="course_title" href="#" target="_blank" title="{{liveItem.courseName|escape}}">{{liveItem.courseName|escape}}</a>
+									</h3>
+									<a class="avatar pop_profile fl" href="#" target="_blank" title="{{liveItem.adminUser.nick}}">
+										<img src="/static/images/83f329f2339748daab227a855311b59a.jpg" width="20" height="20" alt="{{liveItem.adminUser.nick}}">
+									</a>
+									<a class="nickname fl" href="#" target="_blank" title="{{liveItem.adminUser.nick}}">{{liveItem.adminUser.nick}}</a>
+									<p class="already_liked fr" style="display:none;">9</p>
+									<a class="love_icon fr" href="#" title="{{liveItem.reserve|length}}人报名">{{liveItem.reserve|length}}</a>
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+				</div>-->
+				
+				<div class="course_area " id="culture" style="top: 20px; z-index:16">
+						
+						<div class="area_head cf">
+							<h2 class="fl">
+								<strong>
+									<a class="area areaId_7" href="#" title="就业直播间">就业</a>
+								</strong>
+							</h2>
+							<span class="fl"><a class="point" href="#" title="就业" rel="nofollow"></a></span>
+						</div>
+							
+						<ul class="cf">
+							{% for liveItem in live_level4 %}
+							<li class="fl">
+								<a class="course_img_wrap" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank" title="{{liveItem.courseName|escape}}">
+									<img src="/static/upload/live/{{liveItem.coverPath}}" width="180" height="120" alt="{{liveItem.courseName|escape}}">
+								</a>
+								<div class="course_info cf">
+									<h3 class="course_title_wrap">
+										<a class="course_title" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank">{{liveItem.courseName|escape}}</a>
+									</h3>
+									<a class="avatar pop_profile fl" href="#" target="_blank" title="{{liveItem.profile.nick}}">
+										<img src="http:{{liveItem.profile.avatar}}" width="20" height="20" alt="{{liveItem.profile.nick}}">
+									</a>
+									<a class="nickname fl" target="_blank">{{liveItem.profile.nick}}</a>
+									{% if liveItem.islove %}
+									<p class="already_liked fr">{{liveItem.lovenum}}</p>
+									{% else %}
+									<p class="already_liked fr" style="display:none;">{{liveItem.lovenum|add:1}}</p>
+									<a class="love_icon fr" room-id="{{liveItem.roomId}}" title="{{liveItem.lovenum}}人报名">{{liveItem.lovenum}}</a>
+									{% endif %}
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+				</div>
+				
+				<div class="course_area " id="study-abroad" style="top: 40px; z-index:15">
+						
+						<div class="area_head cf">
+							<h2 class="fl">
+								<strong>
+									<a class="area areaId_4" href="#" title="留学 直播间">留学</a>
+								</strong>
+							</h2>
+							<span class="fl"><a class="point" href="#" title="留学 " rel="nofollow"></a></span>
+						</div>
+							
+						<ul class="cf">
+							{% for liveItem in live_level5 %}
+							<li class="fl">
+								<a class="course_img_wrap" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank" title="{{liveItem.courseName|escape}}">
+									<img src="/static/upload/live/{{liveItem.coverPath}}" width="180" height="120" alt="{{liveItem.courseName|escape}}">
+								</a>
+								<div class="course_info cf">
+									<h3 class="course_title_wrap">
+										<a class="course_title" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank">{{liveItem.courseName|escape}}</a>
+									</h3>
+									<a class="avatar pop_profile fl" href="#" target="_blank" title="{{liveItem.profile.nick}}">
+										<img src="http:{{liveItem.profile.avatar}}" width="20" height="20" alt="{{liveItem.profile.nick}}">
+									</a>
+									<a class="nickname fl" target="_blank">{{liveItem.profile.nick}}</a>
+									{% if liveItem.islove %}
+									<p class="already_liked fr">{{liveItem.lovenum}}</p>
+									{% else %}
+									<p class="already_liked fr" style="display:none;">{{liveItem.lovenum|add:1}}</p>
+									<a class="love_icon fr" room-id="{{liveItem.roomId}}" title="{{liveItem.lovenum}}人报名">{{liveItem.lovenum}}</a>
+									{% endif %}
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+					
+					<div class="course_area " id="lifestyle" style="top: 60px; z-index:15">
+						<div class="area_head cf">
+							<h2 class="fl">
+								<strong>
+									<a class="area areaId_3" href="#" title="其他直播间">其他</a>
+								</strong>
+							</h2>
+							<span class="fl"><a class="point" href="#" title="其他" rel="nofollow"></a></span>
+						</div>
+							
+						<ul class="cf">
+							{% for liveItem in live_level6 %}
+							<li class="fl">
+								<a class="course_img_wrap" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank" title="{{liveItem.courseName|escape}}">
+									<img src="/static/upload/live/{{liveItem.coverPath}}" width="180" height="120" alt="{{liveItem.courseName|escape}}">
+								</a>
+								<div class="course_info cf">
+									<h3 class="course_title_wrap">
+										<a class="course_title" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank">{{liveItem.courseName|escape}}</a>
+									</h3>
+									<a class="avatar pop_profile fl" href="#" target="_blank" title="{{liveItem.profile.nick}}">
+										<img src="http:{{liveItem.profile.avatar}}" width="20" height="20" alt="{{liveItem.profile.nick}}">
+									</a>
+									<a class="nickname fl" target="_blank">{{liveItem.profile.nick}}</a>
+									{% if liveItem.islove %}
+									<p class="already_liked fr">{{liveItem.lovenum}}</p>
+									{% else %}
+									<p class="already_liked fr" style="display:none;">{{liveItem.lovenum|add:1}}</p>
+									<a class="love_icon fr" room-id="{{liveItem.roomId}}" title="{{liveItem.lovenum}}人报名">{{liveItem.lovenum}}</a>
+									{% endif %}
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			
+			<div class="area_content_side fr">
+				<!-- 精彩专题 开始 -->
+				<div id="fantastic_album">
+					<h2>活动专题</h2>
+					<div>
+						<a class="course_img_wrap" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid=754FD4EC84AC11E293DDD067E5F1DAF3" target="_blank" title="商务英语课程直播">
+							<img src="/static/images/uub-2013-01-15.jpg" width="220" height="80" alt="商务英语课程直播" title="商务英语课程直播">
+						</a>
+					</div>
+					<br/>
+					<div>
+						<a class="course_img_wrap" href="http://{{domain}}/part/{{userid}}/{{username}}/?token={{token}}" target="_blank" title="">
+							<img src="/static/images/72021362541032628.JPG" width="220" height="80" alt="商务英语课程直播" title="商务英语课程直播">
+						</a>
+					</div>
+				</div>
+				<!-- 精彩专题 结束 -->
+				
+				<!-- 今日直播  开始-->
+				<div id="today_live">
+					<h2>今日直播</h2>
+					<ul>
+						<!--  
+						<li class="cf">
+							<span class="around_the_corner fl">12:00</span>
+							<h3 class="course_title_wrap fl">
+								<a class="course_title" href="http://{{domain}}/joinlive/10423/{{username}}/?token=12avba&roomid=1F6C4CCA491945B9A423D4F858994EC2" target="_blank" title="测试直播间一">测试直播间一</a>
+							</h3>
+						</li>-->
+						{% for liveItem in today_live %}
+						<li class="cf">
+							<span class="fl">{{liveItem.time}}</span>
+							<h3 class="course_title_wrap fl">
+								<a class="course_title" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{liveItem.roomId}}" target="_blank" title="">{{liveItem.courseName}}</a>
+							</h3>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<!-- 今日直播  结束-->
+				
+				<!-- 人气直播榜  开始
+				<div id="hotlist">
+					<h2>人气直播榜</h2>
+					<ul>
+					<li class="top cf">
+						<div>
+							<a class="avatar pop_profile fl" href="http://www.duobei.com/room/8346405344?xlive=1&xpos=hot" title="戒掉冰淇凌" target="_blank" data-user="6354216823">
+								<img src="./static/f075b14415e6439caf6f8f4cbb4e9973.jpg" width="40" height="40" alt="戒掉冰淇凌" title="戒掉冰淇凌"></a>
+							<div class="hotcourse fl">
+								<h3>
+									<a href="http://www.duobei.com/room/8346405344?xlive=1&xpos=hot" title="日语发音---声调篇" target="_blank">日语发音---声调篇</a>
+								</h3>
+								<p><span>149人参加</span></p>
+							</div>
+						</div>
+						<span class="ahead num">1</span>
+					</li>
+					
+					<li class="top cf">
+						<div>
+							<a class="avatar pop_profile fl" href="http://www.duobei.com/room/6852012013?xlive=1&xpos=hot" title="张伟用" target="_blank" data-user="4447660740">
+								<img src="./static/b1f3b082273547d0a68f5e034064ff80.jpg" width="40" height="40" alt="张伟用" title="张伟用"></a>
+							<div class="hotcourse fl">
+								<h3>
+									<a href="http://www.duobei.com/room/6852012013?xlive=1&xpos=hot" title="转学去美国读本科-高考独木桥之外的一条名校求学新路" target="_blank">转学去美国读本科-高考独木桥之外的一条名校求学新路</a>
+								</h3>
+								<p><span>120人参加</span></p>
+							</div>
+						</div>
+						<span class="ahead num">3</span>
+					</li>
+					
+					<li class="cf">
+						<span class="other num fl">6</span>
+						<h3 class="course_title fl">
+							<a href="http://www.duobei.com/room/4084811386?xlive=1&xpos=hot" title="懒小白玩儿单反——神奇的快门速度" target="_blank">懒小白玩儿单反——神奇的快门速度</a>
+						</h3>
+					</li>
+					
+					<li class="cf">
+						<span class="other num fl">8</span>
+						<h3 class="course_title fl">
+							<a href="http://www.duobei.com/room/8334842544?xlive=1&xpos=hot" title="在户外，如何吃？户外食品与营养常识" target="_blank">在户外，如何吃？户外食品与营养常识</a>
+						</h3>
+					</li>
+					
+					<li class="cf">
+						<span class="other num fl">10</span>
+						<h3 class="course_title fl">
+							<a href="http://www.duobei.com/room/3514117002?xlive=1&xpos=hot" title="《在寒冷的冬季，如何把你变成脂肪内燃机》—实践篇2" target="_blank">《在寒冷的冬季，如何把你变成脂肪内燃机》—实践篇2</a>
+						</h3>
+					</li>
+					</ul>
+				</div>-->
+				<!-- 人气直播榜  结束-->
+			</div>
+		</div>
+	</div>
+	
+	<div id="footer" class="cf">
+		<!-- 
+		<div id="footer_duobei_logo" class="block fl ">
+			<div id="footer_logo"></div>
+			<p>找课程，上友桥</p>	
+		</div>
+		<div id="footer_teachers" class="block fl">
+			<p class="footer_title">我是老师</p>
+			<p><a rel="nofollow" href="http://www.duobei.com/help/content/7" class="footer_title_detail" title="发布公开课" target="_blank">发布公开课</a></p>
+			<p><a rel="nofollow" href="http://www.duobei.com/help/content/42" class="footer_title_detail" title="教室常见问题" target="_blank">教室常见问题</a></p>
+			<p><a rel="nofollow" href="http://www.duobei.com/help/content/73" class="footer_title_detail" title="收费方式" target="_blank">收费方式</a></p>
+		</div>
+		<div id="footer_students" class="block fl">
+			<p class="footer_title">我是学生</p>
+			<p><a rel="nofollow" href="http://www.duobei.com/help/content/1729" class="footer_title_detail" title="参加直播课" target="_blank">参加直播课</a></p>
+			<p><a rel="nofollow" href="http://www.duobei.com/help/content/142857" class="footer_title_detail" title="课程表" target="_blank">课程表</a></p>
+		</div>
+		<div id="footer_about_duobei" class="block fl">
+			<p class="footer_title">关于友友桥</p><p></p>
+			<p><a rel="nofollow" href="javascript:;" class="footer_title_detail contact" title="意见反馈">意见反馈</a></p>
+			<p><a rel="nofollow" href="mailto:business@duobei.com" class="footer_title_detail" title="商务合作">商务合作</a></p>
+			<p><a href="http://www.duobei.com/links" class="footer_title_detail" title="友情链接" target="_blank">友情链接</a></p>
+		</div> 
+		<div id="footer_follow_us" class="block fl">
+			<p class="footer_title">关注我们</p>
+			<a rel="nofollow" href="http://www.weibo.com/duobei" id="footer_sina_weibo" class="footer_title_detail" title="新浪微博" target="_blank">新浪微博</a><br>
+			<a rel="nofollow" href="http://t.qq.com/duobei-class" id="footer_tencent_weibo" class="footer_title_detail" title="腾讯微博" target="_blank">腾讯微博</a><br>
+			<a rel="nofollow" href="http://page.renren.com/601257806" id="footer_renren_homepage" class="footer_title_detail" title="人人主页" target="_blank">人人主页</a><br>
+		</div>
+		-->
+		<div id="footer_company_info" class="cf fl">
+			<p>© 2013 uubridge.net&nbsp;&nbsp;&nbsp;|&nbsp;</p>
+			<a rel="nofollow" href="#" target="_blank">上海世优信息科技有限公司</a><span>&nbsp;|&nbsp;</span>
+			<a rel="nofollow" href="#">服务条款</a><span>&nbsp;|&nbsp;&nbsp;</span>
+			<p>沪ICP备12009076号</p>
+		</div>
+	</div>
+	
+	<script src="/static/js/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/uub_live_new.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

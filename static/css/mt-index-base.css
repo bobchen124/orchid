@@ -1,0 +1,144 @@
+/*pub-1|2012-04-19 17:16:22*/
+#myuubridge #content {
+	background: #fff;
+}
+
+.main-wrap a {
+	color: #369;
+	text-decoration: none;
+	/* color: #D5D5D5; */
+}
+
+.main-wrap a:hover {
+	color: #369;
+	text-decoration: underline;
+	/* color: #D5D5D5; */
+}
+
+.name {
+	width: 660px;
+	font-size: 13px;
+    height: 22px;
+    padding-top: 4px;
+    position: relative;
+    text-align: center;
+}
+
+.mt-userinfo-fan .hd {
+	color: #EC6941;
+	font-size: 20px;
+	font-weight: bold;
+	height: 22px;
+	position: relative;
+	padding-top: 9px;
+	text-align: center;
+}
+
+.mt-feed {
+	padding: 0 20px 10px;
+}
+
+.mt-feed-main-content:after {
+	display: block;
+	content: '\0020';
+	height: 0;
+	clear: both;
+}
+
+.mt-feed-main-content {
+	*zoom: 1;
+}
+
+.mt-feed .mt-feed-unread {
+	_display: inline;
+}
+
+.mt-feed .mt-feed-image-control-line {
+	float: left;
+	overflow: hidden;
+	clear: both;
+	width: 88%;
+	height: 1px;
+	background: #f3f3f3;
+	margin-top: 6px;
+	*margin-top: -6px;
+}
+
+.mt-feed .mt-feed-image-control a {
+	width: 13px;
+	height: 13px;
+	margin-left: 5px;
+	display: inline-block;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.mt-feed .mt-feed-sub-tab:after {
+	content: '\0020';
+	display: block;
+	clear: both;
+	height: 0;
+}
+
+.mt-feed .mt-feed-sub-tab {
+	padding-bottom: 23px;
+	*zoom: 1;
+}
+
+.mt-feed .mt-feed-sub-tab .mt-tab-item,.mt-feed .mt-feed-sub-tab .mt-more-feed-sub-tab
+	{
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	height: 19px;
+	line-height: 19px;
+	color: #7d7d7d;
+	border: 1px solid #fff;
+	padding: 0 5px;
+	margin: 0 2px;
+}
+
+.mt-feed .mt-feed-sub-tab .mt-more-feed-sub-tab .mt-tab-item {
+	float: none;
+	text-align: left;
+	height: 25px;
+	line-height: 25px;
+	border: none;
+	padding: 0 10px;
+	margin: 1px;
+}
+
+.mt-feed .J_MtTabList {
+	border-bottom: 1px solid #cbcbcb;
+}
+
+.mt-feed .fd {
+	border-top: 1px solid #fff;
+}
+
+.mt-feed .feed-loading {
+	margin: 0;
+}
+
+.mt-feed .fd-item {
+	border-bottom: 1px solid #eeeee;
+	margin: 0 0px 0 0px;
+	padding-top: 10px;
+}
+
+.mt-feed .fd-item .fd-wrap {
+	float: right;
+}
+
+.mt-feed .fd-item .fd-wrap a:link,.mt-feed .fd-item .quote-wrap a:link,.mt-feed .fd-item .quote-wrap a:visited,.mt-feed .fd-item .quote-wrap a:hover,.mt-feed .fd-item .show-morea a:link,.mt-feed .fd-item .show-morea a:visited,.mt-feed .fd-item .show-morea a:hover {
+	color: #369;
+}
+
+.mt-feed .fd-item .fd-wrap a:visited,.mt-feed .fd-item .fd-wrap a:hover {
+	color: #369;
+}
+
+.mt-feed .mt-feed-aside {
+	float: right;
+	width: 219px;
+}

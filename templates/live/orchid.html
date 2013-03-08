@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>公开课直播 -友友桥-上海世优科技</title>
+<link href="/static/images/favicon.ico" rel="icon" type="image/x-icon" />
+<link type="text/css" rel="stylesheet" href="/static/css/freeow1.css" />
+<!-- <script type="text/javascript" src="/static/js/messageBox.js"></script> -->
+</head>
+<body>
+
+<input type="hidden" id="hidden_token" value="{{token}}" />
+<input type="hidden" id="hidden_nick" value="{{username}}" />
+<input type="hidden" id="hidden_uid" value="{{userid}}" />
+<input type="hidden" id="hidden_rid" value="{{roomid}}" />
+
+<div id="freeow-tr" class="freeow freeow-top-right"></div>
+
+{% include 'live/orchid_front.html' %}
+
+<script type="text/javascript" src="/static/js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.freeow.min.js"></script>
+</body>
+</html>
+

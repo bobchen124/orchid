@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{{room.courseName}} - 友友桥</title>
+	<meta name="Keywords" content="{{room.courseName}},友友桥">
+	<meta name="Description" content="友友桥,{{room.courseName}}">
+	<link href="/static/images/favicon.ico" rel="icon" type="image/x-icon" />
+	<link type="text/css" href="/static/css/course_display_flexible.css" rel="stylesheet" >
+	<link type="text/css" href="/static/css/wokaobox.css" rel="stylesheet" charset="utf-8" media="screen">
+
+	<body id="course_display_new" style="padding: 0;margin: 0;">
+	
+	<div id="header">
+	<div class="header_wrap">
+		<div class="logo fl" style="padding-top: 5px;">
+			<a href="http://www.uubridge.net/">
+				<img src="/static/images/logo.png" width="203" height="25" title="" alt="友友桥">
+			</a>
+		</div>
+		<ul class="top_nav fl">
+			<li class="fl"><a href="http://www.uubridge.net/" class="to_dashboard">首页</a></li>
+			<li class="fl"><a href="#" class="to_square">公开课直播</a></li>
+			<li class="fl"><a href="http://www.uubridge.net/cn/zh_cn/vl/3/3/1.html" class="to_series">系列课程</a></li>
+		</ul>
+	</div>  
+	</div>
+
+	<input type="hidden" id="roomid" value="{{room.roomId}}">
+	<input type="hidden" id="userid" value="{{userid}}">
+	<input type="hidden" id="username" value="{{username}}">
+	<input type="hidden" id="token" value="{{token}}">
+	
+	<div class="display_flexible cf">
+		<div class="display_flexible_left fl">
+			<div class="course_general cf">
+				<div class="teacher_avatar fl">
+					<a href="#" title="{{liveItem.profile.nick}}">
+						<img src="http:{{room.profile.avatar}}" width="80" height="80" alt="{{room.profile.nick}}" title="{{room.profile.nick}}">
+					</a>
+				</div>
+				
+				<div class="course_desc fl">
+					<h1>{{room.courseName}}<span class="startsoon">{{room.roomtip}}</span></h1>
+					<p>直播时间：{{room.date}}&nbsp;&nbsp;{{room.wd}}&nbsp;&nbsp;{{room.btime}} - {{room.etime}}</p>
+					<p class="teacher">主讲：<a href="#" title="{{room.profile.nick}}">{{room.profile.nick}}</a></p>
+				</div>
+				
+				<div class="other_info fl">
+					<!-- <span class="price fl">免费</span> -->
+					<p class="popularity fl" title="{{room.reserve|length}}人报名"><span id="sign_num" class="sign_up_num">{{room.reserve|length}}</span>&nbsp;人</p>
+					<p class="room_capacity fl" title="直播间容量为{{room.num}}人">{{room.num}}人</p><span class="browse_num fl" title="{{room.browse}}次浏览">{{room.browse}}&nbsp;次</span>
+				</div> 
+			</div>
+			
+			<div class="course_action cf" id="course_action">
+				<!-- <strong class="fl" style="display: none;">距课程开始还有：<span id="time_show">8小时50分58秒</span></strong> -->
+				<!-- <a class="register_btn fl " href="javascript:;">报名参加</a> -->
+				<a class="enter_btn fl not_open" href="http://{{domain}}/joinlive/{{userid}}/{{username}}/?token={{token}}&roomid={{room.roomId}}">进入直播间</a>
+				
+				{% if room.islove %}
+				<a class="like liked_course fl">
+					<span class="like_span">报名（<span>{{room.lovenum}}</span>）</span>
+				</a>
+				{% else %}
+				<a class="like liked_course fl" style="display:none;">
+					<span class="like_span">报名（<span id="liked_num">{{room.lovenum|add:1}}</span>）</span>
+				</a>
+				<a class="like like_course fl">
+					<span class="like_span">报名（<span id="liked_num">{{room.lovenum}}</span>）</span>
+				</a>
+				{% endif %}
+				
+				<div class="functions fr">
+					<!-- 若已经设置短信提醒，有hasSet的class -->
+					<!-- <a class="fl phone_notice " href="#" title="短信提醒">短信提醒</a> -->
+				</div>
+			</div>
+			
+			<div class="course_detail">
+				<h2>{{room.courseName}}简介</h2>
+				<div class="course_description">
+				{% autoescape off %}
+					{{ room.courseIntro}}
+				{% endautoescape %}
+				</div>
+				<p class="notice_tip">
+					<!-- 本课程为网络直播课，报名参加后点【进入教室】在线参加。 -->
+				</p>
+			</div>
+			
+			<div class="course_tag">
+			</div>
+			
+			<div class="other_interest">
+				<h2>你可能也感兴趣...</h2>
+				<ul class="cf">
+				   	{% for course in interests %}
+				   	{% if forloop.first %}
+					<li class="fl first">
+					{% else %}
+					<li class="fl ">
+					{% endif %}
+						<a class="fl" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{course.roomId}}" title="{{course.courseName}}">
+							<img src="/static/upload/live/{{course.coverPath}}" width="120" height="80" alt="{{course.courseName}}">
+						</a>
+						<div class="title_wrap fl">
+							<a class="title" href="http://{{domain}}/room/{{userid}}/{{username}}/?token={{token}}&roomid={{course.roomId}}" title="{{course.courseName}}">{{course.courseName}}</a>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		
+		<!-- 右边的内容开始 -->
+		<div class="side_content fr">
+			<div class="related_with_course" id="#related_with_course">
+				{% if records%}
+				<h2><span class="related_num">{{records.parts}}</span>人参与直播间</h2>
+				<ul>
+					{% for record in records.logs %}
+					<li class="cf">
+						<a class="student_avatar fl pop_profile" rel="nofollow" href="#" target="_blank" title="{{record.nick}}">
+							<img src="http:{{record.avatar}}" width="40" height="40" alt="{{record.nick}}">
+						</a>
+						<div class="related_reason fl">
+							<div class="student_nickname_wrap">
+								<a class="author_nickname" href="#" target="_blank" title="{{record.nick}}">{{record.nick}}</a>
+							</div>
+							<p><span class="timeago" title="{{record.time}}">{{record.time}}</span>&nbsp;{{record.desc}}</p>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+			</div>
+			<!--  
+			<div class="author_info">
+				<div class="author_detail">
+					<div class="cf">
+						<a class="author_avatar fl" href="http://www.duobei.com/5107440454" target="_blank" title="微客_李向衡"><img src="./course_files/7c13c8f014d14881a575670eec87d02f.jpg" width="80" height="80" alt="微客_李向衡" title="微客_李向衡"></a>
+						<div class="nickname_and_follow fl">
+							<div class="author_nickname_wrap">
+								<a id="author_nickname" class="author_nickname" href="http://www.duobei.com/5107440454" target="_blank" title="微客_李向衡">微客_李向衡</a>
+							</div>
+							<div id="add_or_remove_follow">
+								<input type="button" class="follow_btn follow " value="关注">
+								<input type="hidden" id="followId" name="followedUniqueUserId" value="5107440454">
+							</div>
+						</div>
+					</div>
+					<div class="author_description">专注于人力资源考证、实战及咨询&amp;人才求职训练咨询</div>
+				</div>
+			</div>-->
+		</div>
+	</div>
+
+	<div id="footer" class="cf">
+		<div id="footer_company_info" class="cf fl">
+			<p>© 2013 uubridge.net&nbsp;&nbsp;&nbsp;|&nbsp;</p>
+			<a rel="nofollow" href="#" target="_blank">上海世优信息科技有限公司</a><span>&nbsp;|&nbsp;</span>
+			<a rel="nofollow" href="#">服务条款</a><span>&nbsp;|&nbsp;&nbsp;</span>
+			<p>沪ICP备12009076号</p>
+		</div>
+	</div>
+	
+	<script src="/static/js/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/uub_live_new.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

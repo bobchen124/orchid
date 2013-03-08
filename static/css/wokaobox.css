@@ -1,0 +1,138 @@
+.wokaobox-tmp iframe, .wokaobox-tmp object {
+	vertical-align: top;
+	padding: 0;
+	margin: 0;
+}
+
+.wokaobox-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 8020;
+}
+
+.wokaobox-skin {
+	position: relative;
+	padding: 0;
+	margin: 0;
+	background: #f9f9f9;
+	color: #444;
+	text-shadow: none;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.wokaobox-opened {
+	z-index: 8030;
+}
+
+.wokaobox-opened .wokaobox-skin {
+	-webkit-box-shadow: 0 5px 50px rgba(0, 0, 0, 0.75);
+	   -moz-box-shadow: 0 5px 50px rgba(0, 0, 0, 0.75);
+	        box-shadow: 0 5px 50px rgba(0, 0, 0, 0.75);
+}
+
+.wokaobox-outer, .wokaobox-inner {
+	padding: 0;
+	margin: 0;
+	position: relative;
+	outline: none;
+}
+
+.wokaobox-inner {
+	overflow: hidden;
+}
+
+.wokaobox-type-iframe .wokaobox-inner {
+	-webkit-overflow-scrolling: touch;
+}
+
+.wokaobox-error {
+	color: #444;
+	font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin: 0;
+	padding: 10px;
+}
+
+.wokaobox-image, .wokaobox-iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	vertical-align: top;
+}
+
+.wokaobox-image {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#wokaobox-loading, .wokaobox-close {
+	background: transparent url('wokao-sprite-44-75-20120505.png') no-repeat;
+}
+
+#wokaobox-loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	_position: absolute;
+	_top:expression(eval(document.documentElement.scrollTop+(document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop)||0)-(parseInt(this.currentStyle.marginBottom)||0))/2));
+	margin-top: -22px;
+	margin-left: -22px;
+	background-position: 0 -31px;
+	opacity: 0.8;
+	cursor: pointer;
+	z-index: 8020;
+}
+
+#wokaobox-loading div {
+	width: 44px;
+	height: 44px;
+	background: url('wokao-loading-24-24-20120505.gif') center center no-repeat;
+}
+
+.wokaobox-close {
+	position: absolute;
+	top: -15px;
+	_top: 0;
+	right: -15px;
+	_right: 0;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	z-index: 8080;
+}
+
+.wokaobox-tmp {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+	padding: 0;
+	overflow: visible;
+	visibility: hidden;
+}
+
+/* Overlay helper */
+#wokaobox-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+	z-index: 8010;
+	background: #000000;
+	background: -webkit-radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+	background:    -moz-radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+	background:		-ms-radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+	background:		 -o-radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+	background:		    radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+}
+
+#wokaobox-overlay.overlay-fixed {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}

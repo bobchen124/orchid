@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>公开课直播 - 友友桥</title>
+		<meta name="Keywords" content="友友桥、咨询服务、分享智慧、创造价值">
+		<meta name="Description" content="友友桥、咨询服务、分享智慧、创造价值">
+		<link href="/static/images/favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="/static/css/square_new.css" rel="stylesheet" type="text/css">
+		<link type="text/css" href="/static/css/wokaobox.css" rel="stylesheet" charset="utf-8" media="screen">
+	</head>
+	
+	<body id="square">
+	<input type="hidden" id="userid" value="{{ userid|escape }}">
+	<input type="hidden" id="username" value="{{ username|escape }}">
+	<input type="hidden" id="token" value="{{ token|escape }}">
+	
+	<div id="header">
+	<div class="header_wrap">
+		<div class="logo fl" style="padding-top: 5px;">
+			<a href="http://www.uubridge.net/">
+				<img src="/static/images/logo.png" width="203" height="25" title="" alt="友友桥">
+			</a>
+		</div>
+		
+		<ul class="top_nav fl">
+			<li class="fl"><a href="http://www.uubridge.net/" class="to_dashboard">首页</a></li>
+			<li class="fl"><a href="http://livelists.uubridge.net/live/{{userid}}/{{username}}/" target="_blank" class="to_square">公开课直播</a></li>
+			<li class="fl"><a href="http://www.uubridge.net/cn/zh_cn/vl/3/3/1.html" target="_blank" class="to_series">系列课程</a></li>
+		</ul>
+	</div>  
+	</div>
+	
+	<!-- <iframe src="part.html" width="100%" height="800" scrolling="no" frameborder="0"></iframe> -->
+	{% include "unversity/part.html" %}
+	
+	<div id="footer" class="cf" style="margin-top: 20px;">
+		<div id="footer_company_info" class="cf fl" style="padding-left: 240px;">
+			<p>© 2013 uubridge.net&nbsp;&nbsp;&nbsp;|&nbsp;</p>
+			<a rel="nofollow" href="#">上海世优信息科技有限公司</a><span>&nbsp;|&nbsp;</span>
+			<a rel="nofollow" href="#">服务条款</a><span>&nbsp;|&nbsp;&nbsp;</span>
+			<p>沪ICP备12009076号</p>
+		</div>
+	</div>
+	
+	</body>
+</html>

@@ -1,0 +1,8 @@
+<%@page import="net.uubridge.web.watch.WatchLoadReturnJSONService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	WatchLoadReturnJSONService serv = new WatchLoadReturnJSONService(request,response); 
+	serv.executeService();
+	out.println(serv.pageEchoJsonString);
+%>
+

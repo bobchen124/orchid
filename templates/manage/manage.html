@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>直播间管理 -- 上海世优信息科技有限公司</title>
+
+<script type="text/javascript">
+	function saveUser() {
+		M.saveUser();
+	}
+</script>
+
+<link type="text/css" rel="stylesheet" href="/static/plugins/ueditor/themes/default/ueditor.css" />
+<link type="text/css" rel="stylesheet" href="/static/plugins/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.8.16.custom.css" />
+<link type="text/css" rel="stylesheet" href="/static/plugins/jquery-ui-bootstrap/bootstrap/bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="/static/plugins/freeow/style/freeow/freeow.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/static/plugins/timepicker/jquery-ui-timepicker-addon.css" />
+<link type="text/css" rel="stylesheet" href="/static/plugins/imgareaselect-0.9.8/css/imgareaselect-default.css" />
+<link type="text/css" rel="stylesheet" href="/static/plugins/uploadify/uploadify.css" />
+<link type="text/css" rel="stylesheet" href="/static/plugins/flexigrid/css/flexigrid.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/manager.css" />
+
+<script type="text/javascript" src="/static/plugins/jquery-ui-bootstrap/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/static/plugins/jquery-ui-bootstrap/js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="/static/plugins/freeow/jquery.freeow.min.js"></script>
+<script type="text/javascript" src="/static/plugins/timepicker/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/static/plugins/timepicker/jquery-ui-sliderAccess.js"></script>
+<script type="text/javascript" src="/static/plugins/timepicker/localization/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/static/plugins/imgareaselect-0.9.8/scripts/jquery.imgareaselect.pack.js"></script>
+<script type="text/javascript" src="/static/plugins/uploadify/jquery.uploadify-3.1.min.js"></script>
+<script type="text/javascript" src="/static/plugins/flexigrid/js/flexigrid.js"></script>
+<script type="text/javascript" src="/static/js/manager.js"></script>
+<script type="text/javascript" src="/static/js/courseGrid.js"></script>
+</head>
+
+<body>
+	<div id="login_div" title="登录">
+		<form id="login_form">
+			<fieldset class="ui-helper-reset">
+				<label for="tab_name">用户名</label> <br/>
+				<input type="text" name="tab_name" id="tab_name" value="" class="ui-widget-content ui-corner-all" /> <br/><br/>
+				<label for="tab_pass">密码</label><br/>
+				<input type="password" name="tab_pass" id="tab_pass" value="" class="ui-widget-content ui-corner-all"></input>
+			</fieldset>
+		</form>
+	</div>
+	
+	<div id="tabs" class="div-center" style="position: absolute;">
+		<ul>
+          <li><a href="#tabs-1">开辟房间</a></li>
+          <li><a href="#tabs-2">房间列表</a></li>
+          <li><a href="#tabs-3">新增用户</a></li>
+          <li><a href="#tabs-4">直播间视频回放</a></li>
+        </ul>
+        
+        <div id="tabs-1" class="sh">
+        	<form id="create_course_form">
+	        	<fieldset class="ui-helper-reset">
+	        		<label for="course_name">课程名称</label><br/>
+	        		<input type="text" name="course_name" id="course_name" value="" class="ui-widget-content ui-corner-all" style="margin-top: 10px;"/>
+	        		<br/><br/>
+	        		
+	        		<label for="course_intro" style="margin-bottom: 10px;">内容简介</label><br/>
+	        		<textarea id='live_content_editor' name='liveContent' style="margin-top: 10px;"></textarea>
+	        		<!-- <script type="text/javascript" id="live_content_editor" name="liveContent"></script> -->
+	        		<br/><br/>
+	        		
+	        		<label for="course_class" style="padding-bottom: 10px;">课程类型</label>
+	        		<br/>
+	        		<select name="course_class" id="course_class" class="ui-widget-content ui-corner-all" style="width: 200px;margin-top: 10px;">
+	        			<option value="ky" selected="selected">考研</option>
+	        			<option value="jy">就业</option>
+	        			<option value="lx">留学</option>
+	        			<option value="qt">其他</option>
+	        		</select>
+	        		<br/><br/>
+	        		
+	        		<label for="cover">封面</label><br/>
+	        		<button id="cover" name='cover' class="ui-button-primary" type="button" style="margin-top: 10px;"  onclick="M.openImgUploadDialog()">上传</button>
+	        		<img id="select_cover_img" name="" src="" style="margin-left: 60px;max-width: 160px;max-height: 120px;"/>
+	        		<br/><br/>
+	        		
+	        		<label for="romm_admin">管理员</label><br/>
+	        		<!-- <input type="text" name="romm_admin" id="romm_admin" value="" style="width: 200px;margin-top: 10px;"  /> -->
+	        		<select name="romm_admin" id="romm_admin" class="ui-widget-content ui-corner-all" style="width: 200px;margin-top: 10px;">
+	        			{% for user in users %}
+	        			<option value="{{user.userid}}">{{user.username}}</option>
+	        			{% endfor %}
+	        		</select>
+	        		<br/><br/>
+	        		
+	        		<label for="romm_num">房间人数</label><br/>
+	        		<input type="text" name="romm_num" id="romm_num" value="10" style="width: 100px;margin-top: 10px;"
+	        		onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g))"
+	        		onchange="M.validNum()" />
+	        		<span style="color: #A7A7A7;">最多20人</span>
+	        		<br/><br/>
+	        		
+	        		<label for="open_time">开放时间</label>
+	        		<label for="time" style="padding-left: 160px">时长</label>
+	        		<br/>
+	        		<input type="text" name="open_time" id="open_time" value="" style="width: 200px;margin-top: 10px;" />
+	        		<select name="time" id="time" class="ui-widget-content ui-corner-all" style="width: 100px;margin-top: 10px;">
+	        			<option value="30">30分钟</option>
+	        			<option value="60" selected="selected">1小时</option>
+	        			<option value="120">2小时</option>
+	        			<option value="180">3小时</option>
+	        			<!-- <option value="240">4小时</option> -->
+	        			<option value="0">不限</option>
+	        		</select>
+	        		<br/><br/>
+	        		
+	        	</fieldset>	
+        	</form>
+        	<div style="text-align: center;background-color: ">
+        		<button id="create_btn" type="button" class="ui-button-primary">创建房间</button>
+        	</div>
+        </div>
+        
+        <div id="tabs-2" class="sh">
+        	<table id="course_grid" style="display:none"></table>
+        </div>
+       
+        <div id="tabs-3" class="sh">
+        	<form id="create_user_form">
+	        	<fieldset class="ui-helper-reset">
+	        		<label for="user_id">用户ID</label><br/>
+	        			<input type="text" name="user_id" id="user_id" value="" style="width: 300px;margin-top: 10px;" />
+	        		<br/><br/>
+	        		
+	        		<label for="user_name">用户名</label><br/>
+	        			<input type="text" name="user_name" id="user_name" value="" style="width: 300px;margin-top: 10px;" />
+	        		<br/><br/>
+	        	</fieldset>	
+        	</form>
+        	<div style="text-align: center;background-color:">
+        		<button id="save_btn_user" type="button" class="ui-button-primary" onclick="saveUser()">保存</button>
+        	</div>
+        	<!-- <div style="text-align: left;">
+        		<button id="save_btn_user" type="button" class="ui-button-primary" onclick="saveUser()">保存</button>
+        	</div> -->
+        </div>
+        
+        <div id="tabs-4" class="sh">
+        	<form id="create_user_form">
+	        	<fieldset class="ui-helper-reset">
+	        		<label for="user_id">直播间ID</label><br/>
+	        			<input type="text" name="room_id" id="room_id" value="" style="width: 300px;margin-top: 10px;" />
+	        		<br/><br/>
+	        		
+	        		<label for="user_name">回放地址</label><br/>
+	        			<input type="text" name="room_url" id="room_url" value="" style="width: 500px;margin-top: 10px;" />
+	        		<br/><br/>
+	        	</fieldset>	
+        	</form>
+        	
+        	<div style="text-align: center;">
+        		<button id="save_btn_room" type="button" class="ui-button-primary" onclick="">保存</button>
+        	</div>
+        </div>
+	</div>
+	
+	<div id="freeow-tr" class="freeow freeow-top-right"></div>
+		
+	<div id="upload_dialog" title="上传封面">
+		<input type="file" id='uploadify_select_btn' name='uploadify_select_btn' />
+		
+		<div id="cover_img_div" class="cover_position fl">
+			<p class="cover_title">课程封面图</p>
+			<p class="cover_descript">支持jpg、png、jpeg格式图片，文件小于3M</p>
+			<div id="local_img" class="course-img"></div>
+		</div>
+		
+		<div style="width: 300px;height: 300px;float: left;margin-left: 50px;">
+			<h2>预览</h2>
+			
+			<div id="preview" class="cover_preview">
+		        <img src=""  style="width:160px;height:120px;background: #F0F0F0;"/>
+		    </div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="/static/plugins/ueditor/editor_config.js"></script>
+	<script type="text/javascript" src="/static/plugins/ueditor/editor.js"></script>
+
+	<script type="text/javascript" >
+    	var editor = new UE.ui.Editor();
+    	editor.render('live_content_editor');
+   		editor.addListener("ready",function() {
+    		//editor.setContent("fdfdfdsdsds");
+    		$('#edui1_iframeholder').css('height','140px'); //初始化高度
+    	});
+	</script>
+</body>
+
+</html>
